@@ -2,16 +2,22 @@ const form = document.querySelector("form");
 const input = document.querySelector("#txtTaskName");
 const btnDltAll = document.querySelector("#btnDeleteAll");
 const taskList = document.querySelector("#task-list");
+
+const cardTwo = document.querySelector(".card_two");
+cardTwo.style.display = "none";
+
 eventListeners();
 function eventListeners() {
   form.addEventListener("submit", addNewItem);
   taskList.addEventListener("click", deleteItem);
   btnDltAll.addEventListener("click", btnDeleteAll);
 }
+
 function addNewItem(e) {
   if (input.value === "") {
-    alert("Add New Item");
+    alert("Listeye boş ekleme yapamazsınız!");
   } else {
+    cardTwo.style.display = "flex";
     const li = document.createElement("li");
     li.className = "list-group-item list-group-item-secondary";
     li.appendChild(document.createTextNode(input.value));
@@ -24,8 +30,8 @@ function addNewItem(e) {
     li.appendChild(a);
     taskList.appendChild(li);
     input.value = "";
-    e.preventDefault();
   }
+  e.preventDefault();
 }
 function deleteItem(e) {
   if (e.target.className === "fas fa-times") {
